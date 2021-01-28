@@ -46,17 +46,18 @@ class PostsAdminController extends AbstractController
     public function post()
     {
         $this->loginService->check();
+        $mesg = false;
 
-
-        $this->render("post/admin/new", []);
-
-
-        if (isset($_POST['title']) and isset ($_POST['content'])) {
-
-            $entryTitel = $_POST['title'];
-            $entryContent = $_POST['content'];
-            $this->postRepository->newPost($entryTitel, $entryContent);
-
+        if (!empty($_POST['title']) and !empty($_POST['content'])) {
+            if (strlen($_POST['title']) > 0 and strlen($_POST['content']) > 20) {
+                $entryTitel = $_POST['title'];
+                $entryContent = $_POST['content'];
+                $this->postRepository->newPost($entryTitel, $entryContent);
+                $mesg = true;
+            }
         }
+        $this->render("post/admin/new", [
+            'mesg' => $mesg
+        ]);
     }
 }

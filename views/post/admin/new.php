@@ -3,6 +3,7 @@
 
     <main class="flex-shrink-0">
         <div class="container">
+            <?php if (!empty($mesg)) { echo "Eintrag gespeichert!"; } ?>
             <form method="post" action="posts-new">
                 <input type="text" name="title" class="form-control"><br/>
                 <textarea name="content" class="form-control"></textarea><br/>
