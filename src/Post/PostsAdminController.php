@@ -47,6 +47,7 @@ class PostsAdminController extends AbstractController
     {
         $this->loginService->check();
         $mesg = false;
+        $error = false;
 
         if (!empty($_POST['title']) and !empty($_POST['content'])) {
             if (strlen($_POST['title']) > 0 and strlen($_POST['content']) > 20) {
@@ -54,10 +55,13 @@ class PostsAdminController extends AbstractController
                 $entryContent = $_POST['content'];
                 $this->postRepository->newPost($entryTitel, $entryContent);
                 $mesg = true;
+            } else {
+                $error = true;
             }
         }
         $this->render("post/admin/new", [
-            'mesg' => $mesg
+            'mesg' => $mesg,
+            'error' => $error
         ]);
     }
 }

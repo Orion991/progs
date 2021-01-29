@@ -35,4 +35,16 @@ abstract class AbstractRepository
         $post = $stmt->fetch(PDO::FETCH_CLASS);
         return $post;
     }
+
+    function search($search)
+    {
+        $table = $this->getTableName();
+        $model = $this->getModelName();
+        $sql = "select * from posts where titel like :search";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':search', '%'.$search.'%', PDO::PARAM_INT);
+        $stmt->execute();
+        $src = $stmt->fetchAll(PDO::FETCH_CLASS, "$model");
+        return $src;
+    }
 }

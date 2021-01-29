@@ -38,7 +38,11 @@ $routes = [
     '/posts-new' => [
     'controller' => 'postsAdminController',
     'method' => 'post'
-]
+    ],
+    '/search' => [
+        'controller' => 'postsController',
+        'method' => 'search'
+    ],
 
 ];
 

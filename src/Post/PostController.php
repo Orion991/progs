@@ -17,7 +17,8 @@ class PostController extends AbstractController
 
     }
 
-    public function index() {
+    public function index()
+    {
         $posts = $this->postRepository->all();
 
         $this->render("post/index", [
@@ -28,7 +29,8 @@ class PostController extends AbstractController
 
     }
 
-    public function view() {
+    public function view()
+    {
         $id = $_GET['id'];
         if (isset($_POST["content"])) {
             $content = $_POST["content"];
@@ -42,6 +44,16 @@ class PostController extends AbstractController
             'comments' => $comments
         ]);
 
+
+    }
+
+    public function search()
+    {
+        $search = $_POST["search"];
+        $erg = $this->postRepository->search($search);
+        $this->render("post/search", [
+            'erg' => $erg
+        ]);
 
     }
 }

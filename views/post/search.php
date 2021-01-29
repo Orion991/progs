@@ -3,15 +3,14 @@
 <main class="flex-shrink-0">
 <div class="container">
 <ul>
-          <?php foreach ($posts AS $post): ?>
+          <?php foreach ($erg AS $ergs): ?>
           <li>
-              <a href="post?id=<?php echo $post->id; ?>">
-              <?php echo $post->titel?>
+              <a href="post?id=<?php echo $ergs->id; ?>">
+              <?php echo $ergs->titel?>
               </a>
           </li>
           <?php endforeach; ?>
 
-    <?php var_dump($_POST['search']); ?>
 </ul>
 
 </div>
